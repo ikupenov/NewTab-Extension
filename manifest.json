@@ -1,0 +1,10 @@
+{
+    "name": "Test new tab app",
+    "description": "Launches apps, the good way!",
+    "manifest_version": 2,
+    "version": "0.0.0.1",
+    "permissions" : ["management"],
+    "chrome_url_overrides" : {
+        "newtab": "newtab.html"
+    }
+ }
