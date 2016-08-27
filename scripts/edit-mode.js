@@ -2,6 +2,12 @@
 
 let editMode = (function () {
     let $items = $('.add-btn');
+    let $itemsData = $items.parents('td');
+
+    let $addNewBtn = $('a.add-btn');
+    let $allInputs = $('input.input');
+    let $webSiteNameInput = $('input.website-name');
+    let $webSiteUrl = $('input.website-url');
 
     let isInEditMode = false;
 
@@ -9,7 +15,6 @@ let editMode = (function () {
         if (isInEditMode) {
             $items.each(function (i, el) {
                 let $el = $(el);
-                $el.parents('td').css('border', 'none');
 
                 if ($el.html() === '+') {
                     $el.css('display', 'none');
@@ -18,12 +23,12 @@ let editMode = (function () {
                 }
             });
 
-            isInEditMode = false;
+            $allInputs.each((i, el) => $(el).addClass('hide'));
+
+            $itemsData.css('border', 'none');
         } else {
             $items.each(function (i, el) {
                 let $el = $(el);
-                $el.css('display', 'block');
-                $el.parents('td').css('border', '1px solid black');
 
                 if (!$el.html().length) {
                     $el.html('+');
@@ -32,7 +37,8 @@ let editMode = (function () {
                 }
             });
 
-            isInEditMode = true;
+            $items.css('display', 'block');
+            $itemsData.css('border', '1px solid black');
         }
     }
 
@@ -40,7 +46,29 @@ let editMode = (function () {
         // Shift + 'E'
         if (ev.shiftKey && ev.which === 69) {
             toggleEditMode();
+            if (isInEditMode) {
+                isInEditMode = false;
+            } else {
+                isInEditMode = true;
+            }
         }
+    });
+
+    $addNewBtn.on('click', function () {
+        $addNewBtn.each(function(__, el) {
+            let $el = $(el);
+            if ($el.hasClass('hide')) {
+                $el.siblings('input.input').addClass('hide');
+                $el.show();
+            }
+        });
+
+        let $this = $(this);
+
+        $this.hide();
+        $this.addClass('hide');
+
+        $this.siblings('input.input').removeClass('hide');
     });
 
     return {

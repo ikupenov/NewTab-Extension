@@ -158,11 +158,15 @@ body, html {
       text-decoration: none;
     }
 
-    .table tr td a:hover{
+    .table tr td a:hover {
       -webkit-stroke-width: 5.3px;
       -webkit-stroke-color: #FFFFFF;
       -webkit-fill-color: #FFFFFF;
       text-shadow: 1px 0px 20px #FFFFFF;
 
       cursor: pointer;
+    }
+
+.hide {
+  display: none;
 }
